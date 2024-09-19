@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Lucida Console;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #00990f;
+}
+
+.logo img {
+  width: 70%; /* Defina a largura que deseja */
+  padding: center 70%;
+  align-items: center;
+  border-radius: 420px;
+}
+
+.login {
+  background: #021d06;
+  border-radius: 10px;
+  width: 400px;
+  padding: 40px;
+}
+
+.login h2 {
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+}
+
+.login .box-user {
+  position: relative;
+}
+
+.login .box-user input {
+  width: 100%;
+  padding: 10px 0;
+  outline: none;
+  border: 0;
+  background: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.login .box-user label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  color: white;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.login .box-user input:focus ~ label,
+.login .box-user input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: rgb(30, 236, 64);
+  font-size: 12px;
+}
+
+.forget {
+  font-size: 12px;
+  color: white;
+  float: right;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 700;
+  margin-top: 20px;
+  transition: 0.5s;
+  border-style: solid;
+}
+
+.button:hover {
+  /* Quando o mouse passar por cima: */
+  background-color: rgb(30, 236, 64);
+  border-radius: 5px;
+  color: black;
+}
+
+@media (max-width: 400px) {
+  /* Torna-lo respnsível */
+  .login {
+    width: 90%;
+  }
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+.google-button {
+  align-items: center;
+  display: flex;
+  padding: 8px;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 100;
+  margin-top: 20px;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.google-button:hover {
+  background-color: rgba(255, 255, 255, 0.925);
+  color: rgb(2, 51, 4);
+}
+
+.google-logo {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
