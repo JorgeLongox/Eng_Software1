@@ -4,37 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../public/style/style.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <title>Login Etnobook</title>
   </head>
   <div class="logo">
     <img src="../public/image/logo.png" alt="Logo Etnobook" />
   </div>
   <body>
-    <form class="login">
+    <form method="post" class="login">
       <h2>Login</h2>
       <div class="box-user">
-        <input type="text" name="" required />
+        <input type="email" name="email" id="email" required />
         <label>Usuário</label>
       </div>
+      <small class="erro" id="textEmail"></small>
       <div class="box-user">
-        <input type="password" name="" required />
+        <input type="password" name="senha" id="senha" required />
         <label>Senha</label>
       </div>
+      <small class="erro" id="textSenha"></small>
       <div>
-        <a href="#" class="forget"> Esqueceu a senha? </a>
+        <a href="../views/esq_senha.html" class="forget"> Esqueceu a senha? </a>
       </div>
       <div>
         <a href="../views/home.html" class="button"> Entrar </a>
       </div>
-      <div class="container">
-        <button class="google-button">
-          <img
-            src="https://clipartcraft.com/images/google-logo-png.png"
-            alt="Google logo"
-            class="google-logo"
-          />
-          Entrar com Google
-        </button>
+      <div>
+        <a href="../views/cadastro.html" class="button"> Cadastre-se </a>
+      </div>
+      <div id="g_id_onload"
+        data-client_id="secrets.env.GOOGLE_OAUTH_CLIENT_ID"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-login_uri="http://localhost:9000/google-login"
+        data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large">
       </div>
     </form>
     <script src="../public/javascript/login.js"></script>
