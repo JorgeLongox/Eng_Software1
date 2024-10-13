@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/style/cadastro.css">
+    <title>Tela de Cadastro</title>
+</head>
+<body> 
+    <div class="container">
+        <form class="form-cadastro" id="cadastroForm">
+            <h2>🌱 Cadastro 🌱</h2>
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <label for="data-nasc">Data de nascimento</label>
+            <input type="date" id="data-nasc" name="data-nasc" required>
+
+            <label for="genero">Gênero</label>
+            <select id="genero" name="genero" required>
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="feminino">Não binário</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <label for="tipo-conta">Tipo de Conta</label>
+            <select id="tipo-conta" name="tipo-conta" required>
+                <option value="">Selecione</option>
+                <option value="pesquisador">Pesquisador</option>
+                <option value="estudante">Estudante</option>
+                <option value="outro">Outro</option>
+            </select>
+
+            <button type="submit">Cadastre-se</button>
+        </form>
+        <div id="message" class="message"></div>
+    </div>
+    <script src="../public/javascript/cadastro.js"></script>
+</body>
+</html>

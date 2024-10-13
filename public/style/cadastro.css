@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lucida Console;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #00990f;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Para centralizar verticalmente */
+}
+
+.form-cadastro {
+    background: #021d06;
+    border-radius: 10px;
+    width: 600px;
+    padding: 30px;
+}
+
+.form-cadastro h2 {
+    margin-bottom: 30px;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+
+.form-cadastro label {
+    color: white;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+}
+
+.form-cadastro input,
+.form-cadastro select {
+    width: 100%;
+    padding: 8px;
+    outline: none;
+    border: 0;
+    background: transparent;
+    border-bottom: 1px solid white;
+    text-emphasis-color: white;
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 20px; /* Ajuste de espaço entre campos */
+}
+
+.form-cadastro button {
+    width: 100%;
+    padding: 8px;
+    background: transparent; /* Cor do botão */
+    border: 2px solid #ffffff;
+    box-sizing: border-box;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s; /* Transição suave */
+}
+
+.form-cadastro button:hover {
+    background-color:rgb(30, 236, 64);
+    color: black; /* Cor do botão ao passar o mouse */
+}
+
+.message {
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+}
+
+
+
