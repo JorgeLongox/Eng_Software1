@@ -15,7 +15,7 @@ form.addEventListener("submit", (e) => {
   ) {
     console.log(email.value);
     console.log(password.value);
-    textForm.textContent = "";
+
     textEmail.textContent = "";
     textPassword.textContent = "";
 
@@ -25,7 +25,7 @@ form.addEventListener("submit", (e) => {
     };
 
     // Enviar os dados ao servidor
-    fetch("http://localhost:9000/", {
+    fetch("http://localhost:9000", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
