@@ -11,15 +11,11 @@ const nodemailer = require("nodemailer");
 const session = require("express-session");
 
 // Utilizando as variáveis de ambiente
-const client = new OAuth2Client(secrets.env.GOOGLE_OAUTH_CLIENT_ID); // Google Client ID a partir do arquivo .env
+const client = new OAuth2Client(process.env.GOOGLE_OAUTH_CLIENT_ID); // Google Client ID a partir do arquivo .env
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({
-  origin: ['http://localhost:9000'], 
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-}));
+app.use(cors());
 
 app.use(express.static("public"));
 app.engine("html", require("ejs").renderFile);
@@ -30,7 +26,7 @@ app.set("views", path.join(__dirname, "/views"));
 // Configuração de sessão com a chave secreta extraída das variáveis de ambiente
 app.use(
   session({
-    secret: secrets.env.SESSION_SECRET,
+    secret: 'process.env.SESSION_SECRET',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
@@ -41,8 +37,8 @@ app.use(
 const transporter = nodemailer.createTransport({
   service: 'hotmail', 
   auth: {
-    user: secrets.env.EMAIL_USER,
-    pass: secrets.env.EMAIL_PASSWORD
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD
   }
 });
 
@@ -51,7 +47,7 @@ app.get("/", (req, res) => {
   res.render("login.html");
 });
 
-app.get("/login.html", (req, res) => {
+app.get("/views/login.html", (req, res) => {
   res.render("login.html");
 });
 
@@ -83,7 +79,6 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Rota de login com Google
 app.post("/google-login", async (req, res) => {
   const { id_token } = req.body;
 
@@ -94,7 +89,7 @@ app.post("/google-login", async (req, res) => {
   try {
     const ticket = await client.verifyIdToken({
       idToken: id_token,
-      audience: secrets.env.GOOGLE_OAUTH_CLIENT_ID, // O Client ID também deve estar no .env
+      audience: process.env.GOOGLE_OAUTH_CLIENT_ID, // O Client ID deve estar no .env
     });
 
     const payload = ticket.getPayload();
@@ -106,7 +101,8 @@ app.post("/google-login", async (req, res) => {
       req.session.user = rows[0];
       res.json({ success: true, message: "Login bem-sucedido" });
     } else {
-      const [result] = await db.query("INSERT INTO usuario (email, nome) VALUES (?, ?)", [email, name]);
+      // Inserindo usuário com senha como NULL
+      const [result] = await db.query("INSERT INTO usuario (email, nome, senha) VALUES (?, ?, ?)"); // ou '' se preferir
       req.session.user = { id: result.insertId, email, name };
       res.json({ success: true, message: "Novo usuário criado e login bem-sucedido" });
     }
@@ -115,6 +111,7 @@ app.post("/google-login", async (req, res) => {
     res.status(500).json({ error: "Erro ao validar o token do Google" });
   }
 });
+
 
 app.get('/views/cadastro.html', async (req, res) => {
   res.render("cadastro.html");
@@ -129,7 +126,7 @@ app.post("/cadastro", async (req, res) => {
 
   try {
     const [rows] = await db.query(
-      "INSERT INTO usuario (nome, email, senha, data_nascimento, genero, tipo_conta) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO usuario (nome, email, senha, data_nascimento, genero, tipo_perfil) VALUES (?, ?, ?, ?, ?, ?)",
       [nome, email, senha, data_nascimento, genero, tipo_conta]
     );
     res.redirect("/");
@@ -157,7 +154,7 @@ app.post("/views/esq_senha", async (req, res) => {
       const senha = rows[0].senha;
 
       const mailOptions = {
-        from: secrets.env.EMAIL_USER,
+        from: process.env.EMAIL_USER,
         to: email,
         subject: 'RECUPERAÇÃO DE SENHA',
         text: `Ola querido amante da natureza! Aqui está sua senha: ${senha}`
@@ -181,7 +178,13 @@ app.post("/views/esq_senha", async (req, res) => {
   }
 });
 
+app.get('/views/home.html', async (req,res)=>{
+  res.render('home.html')
+})
+
 // Iniciar o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
