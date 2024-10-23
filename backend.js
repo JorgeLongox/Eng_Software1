@@ -68,8 +68,9 @@ app.post("/login", async (req, res) => {
     );
 
     if (rows.length > 0) {
+      // Se o login for bem-sucedido, responda com um JSON
       req.session.user = rows[0];
-      res.redirect("/views/home");
+      res.json({ success: true, message: "Login bem-sucedido" });
     } else {
       res.status(401).json({ error: "Credenciais inválidas!" });
     }
@@ -83,34 +84,33 @@ app.post("/google-login", async (req, res) => {
   const { id_token } = req.body;
 
   if (!id_token) {
-    return res.status(400).json({ error: "Token não fornecido" });
+      return res.status(400).json({ error: "Token não fornecido" });
   }
 
   try {
-    const ticket = await client.verifyIdToken({
-      idToken: id_token,
-      audience: process.env.GOOGLE_OAUTH_CLIENT_ID, // O Client ID deve estar no .env
-    });
+      const ticket = await client.verifyIdToken({
+          idToken: id_token,
+          audience: process.env.GOOGLE_OAUTH_CLIENT_ID,
+      });
 
-    const payload = ticket.getPayload();
-    const { email, name } = payload;
+      const payload = ticket.getPayload();
+      const { email, name } = payload;
 
-    const [rows] = await db.query("SELECT * FROM usuario WHERE email = ?", [email]);
+      const [rows] = await db.query("SELECT * FROM usuario WHERE email = ?", [email]);
 
-    if (rows.length > 0) {
-      req.session.user = rows[0];
-      res.json({ success: true, message: "Login bem-sucedido" });
-    } else {
-      // Inserindo usuário com senha como NULL
-      const [result] = await db.query("INSERT INTO usuario (email, nome, senha) VALUES (?, ?, ?)"); // ou '' se preferir
-      req.session.user = { id: result.insertId, email, name };
-      res.json({ success: true, message: "Novo usuário criado e login bem-sucedido" });
-    }
+      if (rows.length > 0) {
+          req.session.user = rows[0];
+          return res.json({ success: true, message: "Login bem-sucedido" });
+      } else {
+          // Se o usuário não existir, envie os dados para a página de cadastro
+          return res.json({ success: false, email, name });
+      }
   } catch (error) {
-    console.error("Erro durante a autenticação do Google:", error);
-    res.status(500).json({ error: "Erro ao validar o token do Google" });
+      console.error("Erro durante a autenticação do Google:", error);
+      res.status(500).json({ error: "Erro ao validar o token do Google" });
   }
 });
+
 
 
 app.get('/views/cadastro.html', async (req, res) => {

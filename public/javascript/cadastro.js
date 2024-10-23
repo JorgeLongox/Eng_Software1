@@ -90,3 +90,26 @@ function validarPassword(password) {
     let passwordPattern = /^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,16}$/;
     return passwordPattern.test(password);
 }
+
+// Função para obter parâmetros da URL
+function getQueryParams() {
+    const params = {};
+    const queryString = window.location.search.substring(1);
+    const regex = /([^&=]+)=([^&]*)/g;
+    let m;
+    while (m = regex.exec(queryString)) {
+        params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+    return params;
+}
+
+// Preencher os campos se os parâmetros estiverem presentes
+document.addEventListener("DOMContentLoaded", () => {
+    const params = getQueryParams();
+    if (params.email) {
+        email.value = params.email;  // Preencher o campo de e-mail
+    }
+    if (params.nome) {
+        nome.value = params.nome;  // Preencher o campo de nome
+    }
+});
