@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../public/style/home.css" />
+    <title>Etnobook</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Pesquisa de Plantas Medicinais</h1>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-container">
+            <label for="search">Buscar planta:</label>
+            <input type="text" id="search" placeholder="Digite o nome da planta...">
+        </div>
+
+        <!-- Filtros -->
+        <div class="filter-container">
+            <label for="plantRace">Espécies de Plantas:</label>
+            <select id="plantRace">
+                <option value="all">Todas as Espécies</option>
+                <option value="arvore">Árvore</option>
+                <option value="ervas">Ervas</option>
+                <option value="arbustos">Arbustos</option>
+            </select>
+
+            <label for="treats">Ajuda a tratar:</label>
+            <select id="treats">
+                <option value="all">Todos os tratamentos</option>
+                <option value="infecção">Infecção</option>
+                <option value="inflamação">Inflamação</option>
+                <option value="ferimentos">Ferimentos</option>
+            </select>
+        </div>
+
+        <!-- Lista de Plantas -->
+        <div class="plant-container" id="plantContainer">
+            <!-- Cards de plantas serão gerados aqui -->
+        </div>
+
+        <!-- Sugestões de Feedback -->
+        <div class="suggestions-container">
+            <h2>Deixe sua sugestão</h2>
+            <label for="suggestion">Tem uma planta que deseja sugerir ou algum feedback?</label>
+            <textarea id="suggestion" placeholder="Digite sua sugestão aqui..."></textarea>
+            <button class="feedback-button" id="feedbackButton">Enviar Sugestão</button>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
 </body>
 </html>

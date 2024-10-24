@@ -23,29 +23,37 @@ form.addEventListener("submit", (e) => {
       email: email.value,
       senha: password.value,
     };
-
-    // Enviar os dados ao servidor
-    fetch("http://localhost:9000", {
+    fetch("http://localhost:9000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(usuario),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          textForm.textContent = data.error;
-        } else {
-          textForm.textContent = data.message;
-        }
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-        textForm.textContent = "Ocorreu um erro ao fazer login.";
-      });
-  } else {
-    console.log("Requisição não atendida");
+    .then((response) => {
+      if (response.ok) {
+        return response.json();  // Se a resposta for bem-sucedida e for JSON, parseia
+      } else {
+        // Tente capturar um erro de resposta JSON, caso contrário, exiba a resposta de erro em HTML
+        return response.json().then((data) => {
+          throw new Error(data.error);
+        }).catch(() => {
+          throw new Error("Erro inesperado no servidor. Verifique os detalhes do login.");
+        });
+      }
+    })
+    .then((data) => {
+      // Se o login for bem-sucedido, redirecione
+      if (data.success) {
+        window.location.href = "../views/home.html";
+      } else {
+        textForm.textContent = data.message || "Erro no login.";
+      }
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+      textForm.textContent = error.message || "Ocorreu um erro ao fazer login.";
+    });
   }
 });
 
@@ -80,27 +88,29 @@ function validatorPassword(password) {
   return passwordPattern.test(password);
 }
 
-      // Função de callback para lidar com a resposta do Google Sign-In
 function handleCredentialResponse(response) {
   console.log("Encoded JWT ID token: " + response.credential);
 
-        // Enviar o token JWT para o backend para autenticação
   fetch("http://localhost:9000/google-login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ id_token: response.credential }),
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id_token: response.credential }),
   })
   .then((res) => res.json())
   .then((data) => {
-  if (data.error) {
-    textForm.textContent = data.error;
-  } else {
-    // Se o login for bem-sucedido, redirecionar para a home
-    window.location.href = "../views/home.html";
-  }
+      if (data.error) {
+          textForm.textContent = data.error;
+      } else if (data.success) {
+          // Se o login for bem-sucedido, redirecionar para a home
+          window.location.href = "../views/home.html";
+      } else {
+          // Se o usuário não existir, redirecionar para a página de cadastro com dados pré-preenchidos
+          window.location.href = `../views/cadastro.html?email=${encodeURIComponent(data.email)}&nome=${encodeURIComponent(data.name)}`;
+      }
   })
   .catch((error) => {
-    console.error("Erro durante a autenticação:", error);
-    textForm.textContent = "Ocorreu um erro ao fazer login com Google.";
-})
+      console.error("Erro durante a autenticação:", error);
+      textForm.textContent = "Ocorreu um erro ao fazer login com Google.";
+  });
 }
+
