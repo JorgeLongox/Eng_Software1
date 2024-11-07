@@ -1,57 +1,221 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #00990f;
+}
+
+/* Background e Container */
+.background {
+    background-color: #00990f;
+    padding: 20px 0;
 }
 
 .container {
-    width: 90%;
-    margin: auto;
-    padding: 20px;
+    max-width: 1440px;
+    padding: 0 5%;
+    margin: 0 auto;
 }
 
-.search-container, .filter-container {
+/* Barra de Navegação */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo a {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin: 0 35px;
+    font-size: 15px;
+}
+
+.nav-links li a {
+    color: white;
+}
+
+.bot-comecar {
+    padding: 10px 25px;
+    color: white;
+    background-color: #00990f;
+    border: 2px solid white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main Section */
+main .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+h1 {
+    color: white;
+    font-size: 3rem;
     margin-bottom: 20px;
 }
 
-.plant-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+#searchBar, #filter {
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
 }
 
-.plant-card {
-    border: 1px solid #ccc;
+#plantasContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Estilização dos Blocos de Plantas */
+.planta-bloco {
+    background-color: #fff;
+    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
-    background-color: #f9f9f9;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-.plant-card h3 {
-    margin: 0;
-}
-
-.suggestions-container {
-    margin-top: 40px;
-}
-
-textarea {
+.planta-bloco img {
     width: 100%;
-    height: 100px;
-    margin-top: 10px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
-.feedback-button {
-    display: block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+.planta-bloco h2 {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #00990f;
+}
+
+.planta-bloco:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Texto */
+.texto {
+    width: 50%;
+    color: white;
+}
+
+.texto h3 {
+    margin-top: 20px;
+    text-align: justify;
+    font-size: 1.0rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Estilos do Modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1000; /* Coloca o modal na frente */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente */
+}
+
+/* Estilos do Modal */
+.modal-content img {
+    max-width: 100%; /* A imagem ocupará no máximo 100% da largura do modal */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaço embaixo da imagem */
+    margin: 0 auto; /* Centraliza a imagem */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filtros {
+    margin: 20px 0;
+}
+
+.filtros select,
+.filtros input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filtros button {
+    padding: 10px 15px;
+    background-color: #00990f;
     color: white;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
 }
 
-.feedback-button:hover {
-    background-color: #45a049;
+.filtros button:hover {
+    background-color: #007a0d;
 }
