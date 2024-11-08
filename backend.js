@@ -44,7 +44,7 @@ const transporter = nodemailer.createTransport({
 
 // Rotas para a página de login
 app.get("/", (req, res) => {
-  res.render("login.html");
+  res.render("homepage.html");
 });
 
 app.get("/views/login.html", (req, res) => {
@@ -178,9 +178,29 @@ app.post("/views/esq_senha", async (req, res) => {
   }
 });
 
-app.get('/views/home.html', async (req,res)=>{
-  res.render('home.html')
-})
+app.get('/views/home.html', async (req, res) => {
+  try {
+    const [plantas] = await db.query('SELECT * FROM plantas');
+    res.render('home.html', { plantas });
+  } catch (error) {
+    console.error('Erro ao buscar plantas:', error);
+    res.status(500).json({ error: 'Erro ao buscar plantas' });
+  }
+});
+
+// Rota para obter todas as plantas
+app.get("/api/plantas", async (req, res) => {
+  try {
+      const [rows] = await db.query("SELECT * FROM plantas");
+      res.json(rows);
+  } catch (error) {
+      console.error("Erro ao buscar plantas:", error);
+      res.status(500).json({ error: "Erro ao buscar plantas" });
+  }
+});
+
+
+
 
 // Iniciar o servidor
 app.listen(port, () => {
