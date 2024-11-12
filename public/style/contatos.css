@@ -1,0 +1,71 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none; /*retira decoações do texto*/
+    list-style: none; /*retira pontinho preto da lista*/
+}
+
+body{
+    background-color: #00990f;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.background{
+    background-color:#00990f ;
+}
+
+.container{
+    max-width: 1440px;
+    padding: 0 5%;
+    margin: 0 auto;
+}
+
+nav{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.ul {
+    display: flex;
+    align-items: center;
+}
+
+.ul li{
+    margin: 0 35px;
+    font-size: 15px;
+}
+
+.ul li a{
+    color: white;
+}
+
+.caixa {
+    margin-top: 35px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: white;
+    background-color:#00990f;
+    margin-left: 45px;
+    
+    
+}
+
+.logo-etnobook{
+    display: flex;
+    border-radius: 15%;
+    margin-left: 45%;
+
+    margin-top: -550px;
+    border-radius: 100%;
+}
