@@ -5,10 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plantas Medicinais</title>
     <link rel="stylesheet" href="../public/style/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+    <!-- Background e Container Principal -->
+    <div class="background">
+        <div class="container">
+            <!-- Barra de Navegação com Ícones -->
+            <header>
+                <div class="navegacao">
+                    <ul class="lista">
+                        <li class="item">
+                            <a href="../views/conta.html">
+                                <span class="icones"><i class="icone fa-solid fa-user"></i></span>
+                                <span class="nome">Perfil</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="#">
+                                <span class="icones"><i class="icone fa-solid fa-magnifying-glass"></i></span>
+                                <span class="nome">Página Inicial</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="/logout">
+                                <span class="icones"><i class="icone fas fa-sign-out-alt"></i></span>
+                                <span class="nome">Sair</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+        </div>
+    </div>
+
     <main class="container">
-        <h1>Plantas Medicinais</h1>
+        <h1>Etnobook</h1>
         <input type="input" id="searchBar" placeholder="Pesquisar plantas..." />
 
         <!-- Filtros para as plantas -->
@@ -18,7 +50,6 @@
                 <option value="medicinal">Medicinal</option>
                 <option value="ornamental">Ornamental</option>
                 <option value="alimentar">Alimentar</option>
-                <!-- Adicione mais tipos conforme necessário -->
             </select>
 
             <select id="eficacia">
@@ -26,7 +57,6 @@
                 <option value="antibiótico">Antibiótico</option>
                 <option value="anti-inflamatório">Anti-inflamatório</option>
                 <option value="hidratante">Hidratante</option>
-                <!-- Adicione mais opções conforme necessário -->
             </select>
 
             <button id="filtrar">Filtrar</button>
@@ -36,16 +66,19 @@
             <!-- Blocos de plantas serão adicionados aqui dinamicamente pelo JavaScript -->
         </div>
     </main>
+    
+    <!-- Modal de detalhes da planta -->
     <div id="plantDetailsModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="plantaNome"></h2>
             <img id="plantaImagem" src="" alt="">
             <p id="plantaDescricao"></p>
-            <p id="plantaEficacia"></p> <!-- Adicionado para mostrar a eficácia -->
+            <p id="plantaEficacia"></p>
             <a id="plantaLink" href="" target="_blank">Leia mais sobre esta planta</a>
         </div>
     </div>
+
     <script src="../public/javascript/home.js"></script>
 </body>
 </html>

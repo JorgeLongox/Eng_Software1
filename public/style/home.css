@@ -209,8 +209,8 @@ h1 {
 
 .filtros button {
     padding: 10px 15px;
-    background-color: #00990f;
-    color: white;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -218,4 +218,137 @@ h1 {
 
 .filtros button:hover {
     background-color: #007a0d;
+}
+
+/* Estilo do menu lateral */
+.navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 60px; /* Largura inicial estreita */
+    background-color: #ffffff;
+    padding-top: 20px;
+    text-align: center;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: width 0.3s ease; /* Animação para expandir */
+    overflow: hidden; /* Evita que o conteúdo transborde quando o menu está estreito */
+}
+
+.navegacao:hover {
+    width: 200px; /* Largura expandida ao passar o mouse */
+}
+
+.lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.item a {
+    color:#007a0d;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.icones {
+    font-size: 1.5rem;
+    margin-right: 10px; /* Espaço entre ícone e texto */
+}
+
+.nome {
+    font-size: 0.8rem;
+    margin-left: 10px;
+    opacity: 0; /* O texto começa invisível */
+    white-space: nowrap; /* Evita quebra de linha do texto */
+    transition: opacity 0.3s ease; /* Transição de opacidade */
+}
+
+/* Mostra o texto (nome) quando o menu está expandido */
+.navegacao:hover .nome {
+    opacity: 1;
+}
+
+/* Alteração de cor ao passar o mouse */
+.item a:hover .nome {
+    color: #007a0d;
+}
+
+.item a:hover .icones {
+    color: #007a0d;
+}
+
+/* Estilo do conteúdo principal */
+.background {
+    margin-left: 60px; /* Deixa espaço para o menu fixo inicialmente */
+    padding: 20px 0;
+    transition: margin-left 0.3s ease;
+}
+
+.navegacao:hover ~ .background {
+    margin-left: 200px; /* Ajusta o conteúdo ao menu expandido */
+}
+
+/* Outros estilos já existentes */
+.container {
+    max-width: 1440px;
+    padding: 0 5%;
+    margin: 0 auto;
+}
+
+.main-content {
+    padding-left: 20px;
+}
+
+#plantasContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
