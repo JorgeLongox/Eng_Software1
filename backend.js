@@ -47,6 +47,14 @@ app.get("/", (req, res) => {
   res.render("homepage.html");
 });
 
+app.get("/views/contatos.html", (req, res) => {
+  res.render("contatos.html");
+});
+
+app.get("/views/credit.html", (req, res) => {
+  res.render("credit.html");
+});
+
 app.get("/views/login.html", (req, res) => {
   res.render("login.html");
 });
