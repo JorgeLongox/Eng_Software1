@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="../public/style/conta.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<body class="conta">
+    <nav class="menuLateral">
+        <ul>
+            <li class="item-menu">
+                <a href="../views/conta.html">
+                    <span class="icone"><i class="fa-solid fa-user"></i></span>
+                    <span class="txt-link">Perfil</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="../views/home.html">
+                    <span class="icone"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <span class="txt-link">Buscar</span>
+                </a>
+            </li>
+            <li class="item-menu">
+                <a href="/logout">
+                    <span class="icone"><i class="fa-solid fa-arrow-right-from-bracket"></i></span>
+                    <span class="txt-link">Sair</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main>
+        <div class="perfil">
+            <h2 class="titulo-conta">Perfil do Usuário</h2>
+            <div class="linha"></div>
+            <div class="dados-usuario">
+                <div class="campo">
+                    <label for="nome" class="titulo-campo">Nome:</label>
+                    <h3 class="dado"><%= usuario.nome %></h3>
+                </div>
+                <div class="campo">
+                    <label for="email" class="titulo-campo">Email:</label>
+                    <h3 class="dado"><%= usuario.email %></h3>
+                </div>
+                <div class="campo">
+                    <label for="dataNascimento" class="titulo-campo">Data de Nascimento:</label>
+                    <h3 class="dado"><%= usuario.data_nascimento %></h3>
+                </div>
+                <div class="campo">
+                    <label for="genero" class="titulo-campo">Gênero:</label>
+                    <h3 class="dado"><%= usuario.genero %></h3>
+                </div>
+                <div class="campo">
+                    <label for="tipoConta" class="titulo-campo">Tipo de Conta:</label>
+                    <h3 class="dado"><%= usuario.tipo_perfil %></h3>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

@@ -37,8 +37,8 @@ app.use(
 const transporter = nodemailer.createTransport({
   service: 'hotmail', 
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
+    user: "process.env.EMAIL_USER",
+    pass: "process.env.EMAIL_PASSWORD"
   }
 });
 
@@ -49,6 +49,14 @@ app.get("/", (req, res) => {
 
 app.get("/views/login.html", (req, res) => {
   res.render("login.html");
+});
+
+app.get("/views/conta.html", (req, res) => {
+  if (req.session.user) {
+    res.render("conta.html", { usuario: req.session.user });
+  } else {
+    res.redirect("/views/login.html");
+  }
 });
 
 // Rota de login
@@ -78,6 +86,15 @@ app.post("/login", async (req, res) => {
     console.error("Erro ao fazer login:", error);
     res.status(500).json({ error: "Erro ao fazer login" });
   }
+});
+
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: "Erro ao fazer logout" });
+    }
+    res.redirect("/views/login.html");
+  });
 });
 
 app.post("/google-login", async (req, res) => {
