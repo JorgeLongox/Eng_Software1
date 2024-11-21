@@ -44,17 +44,24 @@ document.addEventListener("DOMContentLoaded", async () => {
         const tipoPlanta = tipoPlantaSelect.value.toLowerCase();
         const eficacia = eficaciaSelect.value.toLowerCase();
         const searchTerm = searchBar.value.toLowerCase(); // Termo de pesquisa
-
+    
+        const eficaciaValores = eficacia.split('|'); // Divide os valores da eficácia pelo delimitador '|'
+    
         const plantasFiltradas = plantas.filter(planta => {
-            const tipoMatch = tipoPlanta ? planta.tipo.toLowerCase() === tipoPlanta : true;
-            const eficaciaMatch = eficacia ? planta.eficacia.toLowerCase().includes(eficacia) : true;
+            const tipoMatch = tipoPlanta ? planta.palavra_chave.toLowerCase() === tipoPlanta : true;
+            
+            const eficaciaMatch = eficacia ? 
+                eficaciaValores.some(val => planta.eficacia.toLowerCase().includes(val.trim())) 
+                : true; // Verifica se qualquer eficácia do filtro está presente na planta
+            
             const searchMatch = planta.nome.toLowerCase().includes(searchTerm); // Pesquisa pelo nome da planta
-
+    
             return tipoMatch && eficaciaMatch && searchMatch; // Combine todos os filtros
         });
         console.log("Plantas filtradas:", plantasFiltradas);
         renderPlantas(plantasFiltradas);
     }
+    
 
     // Adiciona evento ao botão de filtrar
     filtrarButton.addEventListener("click", filtrarPlantas);
