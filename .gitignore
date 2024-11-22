@@ -1,3 +1,7 @@
 # Ignorar arquivo de ambiente
 .env
 process.env
+
+#Logs
+logs/
+*.log
