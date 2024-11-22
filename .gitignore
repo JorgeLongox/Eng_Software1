@@ -5,3 +5,4 @@ process.env
 #Logs
 logs/
 *.log
+/logger/logs_registers
