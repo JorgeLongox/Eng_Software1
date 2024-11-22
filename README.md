@@ -2,7 +2,7 @@ REPOSITÓRIO DO PROJETO ETNOBOOK
 
 EQUIPE DE DESENVOLVIMENTO: Jorge Longo, José Guilherme, Francisco Neto, Gabriel Ferreira, Kaio Vinícius e Danillo Devys.
 
-Somos alunos do sexto período de curso de Ciência da Computação da Universidade Estadual da Paraíba - Campus VII, localizado em Patos/PB.
+Somos alunos do sexto período do curso de Ciência da Computação da Universidade Estadual da Paraíba - Campus VII, localizado em Patos/PB.
 
 Este projeto é referente ao trabalho final da disciplina de Engenharia de Software em parceria com a disciplina de Programação Web, ambas ministradas no período 2024.2.
 
