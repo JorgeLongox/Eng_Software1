@@ -33,7 +33,7 @@ exports.login = async (req, res) => {
 
     if (rows.length > 0) {
       req.session.user = rows[0];
-      res.json({ success: true, message: "Login bem-sucedido" });
+      res.status(200).json({ success: true, message: "Login bem-sucedido" });
     } else {
       res.status(401).json({ error: "Credenciais inválidas!" });
     }
@@ -83,13 +83,14 @@ exports.solicitarRedefinicaoSenha = async (req, res) => {
         console.error("Erro ao enviar email:", error);
         return res.status(500).json({ error: "Erro ao enviar email." });
       } else {
-        res.json({ message: "Email de redefinição enviado com sucesso." });
+        res.status(200).json({ message: "Email de redefinição enviado com sucesso." });
       }
     });
   } catch (error) {
     res.status(500).json({ error: "Erro interno do servidor." });
   }
 };
+
 exports.redefinirSenha = async (req, res) => {
   const { token } = req.params;
   const { novaSenha } = req.body;
@@ -107,7 +108,7 @@ exports.redefinirSenha = async (req, res) => {
     const hashedSenha = novaSenha; // Você pode aplicar hashing aqui, por exemplo, com bcrypt
 
     await db.query("UPDATE usuario SET senha = ?, reset_token = NULL, reset_token_expiration = NULL WHERE id = ?", [hashedSenha, rows[0].id]);
-    res.json({ message: "Senha redefinida com sucesso." });
+    res.status(200).json({ message: "Senha redefinida com sucesso." });
   } catch (error) {
     res.status(500).json({ error: "Erro ao redefinir a senha." });
   }
