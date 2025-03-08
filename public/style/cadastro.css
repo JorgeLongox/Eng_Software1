@@ -5,6 +5,7 @@
     font-family: Lucida Console;
 }
 
+
 body{
     display: flex;
     align-items: center;
@@ -30,12 +31,12 @@ body{
 .form-cadastro h2 {
     margin-bottom: 30px;
     font-size: 30px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }
 
 .form-cadastro label {
-    color: white;
+    color: rgb(255, 255, 255);
     margin-bottom: 5px;
     display: block;
     font-size: 14px;
@@ -49,17 +50,33 @@ body{
     border: 0;
     background: transparent;
     border-bottom: 1px solid white;
-    text-emphasis-color: white;
+    text-emphasis-color: rgb(255, 255, 255);
     color: #ffffff;
     font-size: 16px;
     margin-bottom: 20px; /* Ajuste de espaço entre campos */
 }
+
+.form-cadastro select:focus {
+    background-color: rgba(71, 71, 71, 0.7); /* Fundo escuro, para contraste */
+    color: #ffffff; /* Texto branco */
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+    margin-top: -10px; /* Ajuste conforme necessário */
+    margin-bottom: 10px;
+
+}
+
 
 .form-cadastro button {
     width: 100%;
     padding: 8px;
     background: transparent; /* Cor do botão */
     border: 2px solid #ffffff;
+    margin-bottom: 7px;
     box-sizing: border-box;
     color: white;
     font-size: 16px;
@@ -74,6 +91,6 @@ body{
 
 .message {
     margin-top: 20px;
-    color: white;
+    color: rgb(255, 255, 255);
     text-align: center;
 }

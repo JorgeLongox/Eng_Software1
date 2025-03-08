@@ -16,8 +16,16 @@
             <label for="email">E-mail</label>
             <input type="email" id="email" name="email" required>
 
+            <div id="email-error" class="error-message">
+                *O formato do email deve ser, ex: name@abc.com
+            </div>
+            
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha" required>
+
+            <div id="password-error" class="error-message">
+                *Senha deve conter entre 6 e 16 caracteres, incluindo pelo menos 1 letra e 1 número.
+            </div>
 
             <label for="data-nasc">Data de nascimento</label>
             <input type="date" id="data-nasc" name="data-nasc" required>
@@ -41,6 +49,9 @@
             </select>
 
             <button type="submit">Cadastre-se</button>
+            <button onclick="window.history.back();">Voltar</button>
+
+            
         </form>
         <div id="message" class="message"></div>
     </div>

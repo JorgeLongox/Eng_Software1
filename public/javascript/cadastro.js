@@ -63,21 +63,25 @@ form.addEventListener("submit", async (e) => {
 });
 
 // Validações
+
 email.addEventListener("keyup", () => {
+    const emailError = document.querySelector("#email-error"); // Aqui você usa o id no HTML
     if (!validarEmail(email.value)) {
-        message.textContent = "*O formato do email deve ser, ex: name@abc.com";
-        message.style.color = "red";
+        emailError.textContent = "*O formato do email deve ser, ex: name@abc.com";
+        emailError.style.display = "block"; // Torna a mensagem visível
     } else {
-        message.textContent = "";
+        emailError.style.display = "none"; // Esconde a mensagem de erro
     }
 });
 
+
 password.addEventListener("keyup", () => {
+    const passwordError = document.querySelector("#password-error"); // Aqui você usa o id no HTML
     if (!validarPassword(password.value)) {
-        message.textContent = "*Senha deve conter entre 6 e 16 caracteres, incluindo pelo menos 1 letra e 1 número.";
-        message.style.color = "red";
+        passwordError.textContent = "*Senha deve conter entre 6 e 16 caracteres, incluindo pelo menos 1 letra e 1 número.";
+        passwordError.style.display = "block"; // Torna a mensagem visível
     } else {
-        message.textContent = "";
+        passwordError.style.display = "none"; // Esconde a mensagem de erro
     }
 });
 
